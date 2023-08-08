@@ -119,6 +119,37 @@ struct micro_ros_agent_locator {
 };
 #endif
 
+static inline void set_microros_wifi_transports(char * ssid, char * pass, char * agent_ip, uint agent_port){
+
+	#if defined(BOARD_WITH_ESP_AT)
+	ESP_AT_SERIAL_PORT.begin(ESP_AT_BAUDRATE);
+	while (!ESP_AT_SERIAL_PORT) {
+	}
+	WiFi.init(ESP_AT_SERIAL_PORT, ESP_AT_RESET_PIN);
+	while (WiFi.status() == WL_NO_MODULE) {
+	}
+	#endif
+
+	WiFi.begin(ssid, pass);
+
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+    }
+
+	static struct micro_ros_agent_locator locator;
+	locator.address.fromString(agent_ip);
+	locator.port = agent_port;
+
+	rmw_uros_set_custom_transport(
+		false,
+		(void *) &locator,
+		arduino_wifi_transport_open,
+		arduino_wifi_transport_close,
+		arduino_wifi_transport_write,
+		arduino_wifi_transport_read
+	);
+}
+
 static inline void set_microros_wifi_transports(char * agent_ip, uint agent_port){
 
 	static struct micro_ros_agent_locator locator;

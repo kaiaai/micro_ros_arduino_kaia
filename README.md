@@ -9,19 +9,20 @@ adapted to [Kaia.ai](https://kaia.ai/)-based robots. Specifically, this adapted 
 - tweaks colcon.meta to optimize library features, performance and memory usage
 - sets up the library for inclusion into the Arduino Library Manager
 
-## Install the precompiled library
+## Install a library release by .ZIP download
 - Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases)
 and download the latest `micro_ros_arduino_kaia_prebuilt.zip` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
 select the downloaded `kaia_arduino_lib_prebuilt.zip` file
 - In your Arduino IDE, configure Tools -> Board as "ESP32 Dev Module" and leave the board settings at their defaults
 
-Alternatively, you can `git clone` this library as follows.
+## Install library using git
+Alternatively, you can `git clone` this library as follows. This method may be useful if you need to edit library files or check out different versions of the library.
 - confirm the location of your Arduino sketches by opening File -> Preferences in
-your Windows Arduino IDE and noting the path in "Sketchbook location", for example `C:\Users\YOUR-USER-NAME\Documents\Arduino`
+your Windows Arduino IDE and noting the path "Sketchbook location" path, for example `C:\Users\YOUR-USER-NAME\Documents\Arduino`
 - append `\libraries` to the sketchbook location path to get the path to your Arduino libraries,
 e.g. `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`
-- make sure you have installed [Git for Windows](https://gitforwindows.org/) or a similar Windows Git tool.
+- make sure you have installed [Git for Windows](https://gitforwindows.org/) or a similar Windows Git tool
 - run commands below in a Windows shell to clone this library to your Windows PC
 ```
 cmd.exe
@@ -30,6 +31,30 @@ git clone -b humble --depth 1 --recurse-submodules https://github.com/kaiaai/mic
 ```
 
 Now you can include this library into your sketch using `#include <micro_ros_arduino_kaia.h>`.
+
+## API tweaks
+Now you can handle connecting to WiFi as you see fit, instead of Micro-ROS doing this for you. For example:
+```
+  WiFi.begin(ssid, passw);
+  Serial.print("Connecting to WiFi ");
+
+  unsigned long startMillis = millis();
+  while (WiFi.status() != WL_CONNECTED) {
+    if (millis() - startMillis >= 10000) {
+      Serial.println(" timed out");
+      return;
+    }
+    Serial.print('.'); // Don't use F('.'), it crashes ESP32
+    delay(500);
+  }
+
+  Serial.println(F(" connected"));
+  Serial.print(F("IP "));
+  Serial.println(WiFi.localIP());
+
+  set_microros_wifi_transports("192.168.1.57", 8888); // Micro-ROS setup
+```
+
 
 ## [Kaia.ai](https://kaia.ai/) Arduino ESP32 firmware
 Download the Kaia.ai firmware project code from the [Kaia.ai Arduino firmware repo](https://github.com/kaiaai/kaia_arduino_fw),
