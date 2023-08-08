@@ -70,7 +70,7 @@ Download the Kaia.ai firmware project code from the [Kaia.ai Arduino firmware re
 open the downloaded kaia_esp32.ino project file in your Arduino IDE and click the build button.
 The project should build successfully. At this point, feel free to burn your ESP32 module with the compiled code and/or modify the firmware to your liking.
 
-## Extend, modify and rebuild [Micro-ROS Arduino library for Kaia.ai](https://kaia.ai/)
+## Extend, modify and rebuild Micro-ROS Arduino library for Kaia.ai
 In some cases, tayloring [Kaia.ai](https://kaia.ai/) software to your particular robot may require tweaking the Kaia.ai library code in addition to the Kaia.ai firmware - for example to add new types of Micro-ROS messages. Follow these steps to [extend and/or adapt](https://micro.ros.org/docs/tutorials/advanced/create_new_type/) and rebuild the Kaia.ai Arduino library on Windows for your particular robot design.
 - Install Docker for your PC platform, e.g. [Docker for Windows](https://docs.docker.com/desktop/install/windows-install/) and make sure the Docker agent is running
 - Install the [Micro-ROS Arduino library for Kaia.ai](https://github.com/kaiaai/micro_ros_arduino_kaia/) using the instructions above. Let's assume you are using Arduino IDE for Windows and your Arduino libraries are stored under `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`.
