@@ -15,6 +15,7 @@ adapted to [Kaia.ai](https://kaia.ai/)-based robots. Specifically, this adapted 
 - select the Tools -> Manage Libraries menu
 - type `kaia` in the search filter
 - click Install
+
 Keep in mind that this library is pre-built for ESP32 platform only. If you would like to use it with another platform, see instructions below on how to modify and rebuild the library. In particular, try omitting `-p esp32` in the `docker run` command.
 
 ## Install a library release by .zip download
