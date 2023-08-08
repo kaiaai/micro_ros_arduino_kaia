@@ -70,5 +70,5 @@ In some cases, tayloring [Kaia.ai](https://kaia.ai/) software to your particular
 cmd.exe
 cd %HOMEPATH%\Documents\Arduino\libraries
 git clone -b humble --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
-docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron -p esp32
+docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:humble -p esp32
 ```
