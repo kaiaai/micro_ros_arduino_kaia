@@ -10,7 +10,14 @@ adapted to [Kaia.ai](https://kaia.ai/)-based robots. Specifically, this adapted 
 - sets up the library for inclusion into the Arduino Library Manager
 - pre-built for ESP32 only
 
-## Install a library release by .ZIP download
+## Install a library release using Arduino Library Manager
+- open your Arduino IDE
+- select the Tools -> Manage Libraries menu
+- type `kaia` in the search filter
+- click Install
+Keep in mind that this library is pre-built for ESP32 platform only. If you would like to use it with another platform, see instructions below on how to modify and rebuild the library. In particular, try omitting `-p esp32` in the `docker run` command.
+
+## Install a library release by .zip download
 - Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases)
 and download the latest `micro_ros_arduino_kaia_prebuilt.zip` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
@@ -55,7 +62,6 @@ Now you can handle connecting to WiFi as you see fit, instead of Micro-ROS doing
 
   set_microros_wifi_transports("192.168.1.57", 8888); // Micro-ROS setup
 ```
-
 
 ## Kaia.ai Arduino ESP32 firmware
 Download the Kaia.ai firmware project code from the [Kaia.ai Arduino firmware repo](https://github.com/kaiaai/kaia_arduino_fw),
