@@ -1,138 +1,74 @@
-![banner](.images/banner-dark-theme.png#gh-dark-mode-only)
-![banner](.images/banner-light-theme.png#gh-light-mode-only)
+# Micro-ROS Arduino library for [Kaia.ai](https://kaia.ai) robots platform
 
-# micro-ROS for Arduino
+This is a fork of [Micro-ROS Arduino library](https://github.com/micro-ROS/micro_ros_arduino)
+adapted to [Kaia.ai](https://kaia.ai/)-based robots. Specifically, this adapted fork
 
-This is a micro-ROS library for baremetal projects based on Arduino IDE or Arduino CLI.
+- successfully builds on Windows PC when using `git clone` to download the library
+- adds [kaia_msgs](https://github.com/kaiaai/kaia_msgs/) ROS2 package
+- moves WiFi.begin() outside of the Micro-ROS library for cleaner and convenient code development
+- tweaks colcon.meta to optimize library features, performance and memory usage
+- sets up the library for inclusion into the Arduino Library Manager
 
-As the build process for ROS 2 and micro-ROS is based on custom meta-build system tools and [CMake](https://cmake.org/), this library is provided as a precompiled library. However, users can rebuild their own precompiled libraries in order to modify the micro-ROS configuration or [RMW parameters](https://micro.ros.org/docs/tutorials/advanced/microxrcedds_rmw_configuration/) by customizing the respective [.meta file](https://github.com/micro-ROS/micro_ros_arduino/tree/main/extras/library_generation).
+## Install a library release by .ZIP download
+- Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases)
+and download the latest `micro_ros_arduino_kaia_prebuilt.zip` release
+- Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
+select the downloaded `kaia_arduino_lib_prebuilt.zip` file
+- In your Arduino IDE, configure Tools -> Board as "ESP32 Dev Module" and leave the board settings at their defaults
 
-- [micro-ROS for Arduino](#micro-ros-for-arduino)
-  - [Supported boards](#supported-boards)
-  - [How to use the precompiled library](#how-to-use-the-precompiled-library)
-    - [Arduino IDE](#arduino-ide)
-    - [PlatformIO](#platformio)
-  - [How to build the precompiled library](#how-to-build-the-precompiled-library)
-  - [Patch Arduino board for support precompiled libraries](#patch-arduino-board-for-support-precompiled-libraries)
-    - [Patch Teensyduino](#patch-teensyduino)
-    - [Patch SAM](#patch-sam)
-  - [Purpose of the Project](#purpose-of-the-project)
-  - [License](#license)
-  - [Known Issues/Limitations](#known-issueslimitations)
-
-## Supported boards
-
-Supported boards are:
-
-| Board                                                                                                       | Min version | State      | Details                                                                                              | .meta file               |
-| ----------------------------------------------------------------------------------------------------------- | ----------- | ---------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
-| [Arduino Portenta H7 M7 Core](https://store.arduino.cc/portenta-h7)                                         | v1.8.5      | Supported  | Official Arduino support                                                                             | `colcon.meta`            |
-| [Arduino Nano RP2040 Connect](https://docs.arduino.cc/hardware/nano-rp2040-connect)                         | v1.8.5      | Supported  | Official Arduino support                                                                             | `colcon_verylowmem.meta` |
-| [OpenCR](https://emanual.robotis.com/docs/en/parts/controller/opencr10/)                                    | v1.4.16     | Supported  | [Based on custom board](https://emanual.robotis.com/docs/en/parts/controller/opencr10/#arduino-ide)  | `colcon.meta`            |
-| [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)                                                      | v1.8.5      | Not tested | [Based on Teensyduino (1.58.x)](https://www.pjrc.com/arduino-ide-2-0-0-teensy-support/)                       | `colcon.meta`            |
-| [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)                                                      | v1.8.5      | Supported  | [Based on Teensyduino (1.58.x)](https://www.pjrc.com/arduino-ide-2-0-0-teensy-support/)                       | `colcon.meta`            |
-| [Teensy 3.2/3.1](https://www.pjrc.com/store/teensy32.html)                                                  | v1.8.5      | Supported  | [Based on Teensyduino (1.58.x)](https://www.pjrc.com/arduino-ide-2-0-0-teensy-support/)                       | `colcon_lowmem.meta`     |
-| [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)                                                      | v1.8.5      | Not tested | [Based on Teensyduino (1.58.x)](https://www.pjrc.com/arduino-ide-2-0-0-teensy-support/)                       | `colcon_lowmem.meta`     |
-| [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)                                                      | v1.8.5      | Supported  | [Based on Teensyduino (1.58.x)](https://www.pjrc.com/arduino-ide-2-0-0-teensy-support/)                       | `colcon_lowmem.meta`     |
-| [ESP32 Dev Module](https://docs.espressif.com/projects/arduino-esp32/en/latest/boards/ESP32-DevKitC-1.html) | v1.8.5      | Supported  | [Arduino core for the ESP32 (v2.0.2)](https://github.com/espressif/arduino-esp32/releases/tag/2.0.2) | `colcon.meta`            |
-
-Community contributed boards are:
-
-| Board                                                                                    | Min version | Contributor                                    | Details | .meta file               |
-| ---------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------- | ------- | ------------------------ |
-| [Arduino Due](https://store.arduino.cc/arduino-due)                                      | -           | [@lukicdarkoo](https://github.com/lukicdarkoo) |         | `colcon_verylowmem.meta` |
-| [Arduino Zero](https://store.arduino.cc/arduino-zero)                                    | -           | [@lukicdarkoo](https://github.com/lukicdarkoo) |         | `colcon_verylowmem.meta` |
-| [Kakute F7](http://www.holybro.com/product/kakute-f7-aio-v1-5/)                          | -           | [@amfern](https://github.com/amfern)           |         | `colcon.meta`            |
-| [STM32-E407](https://www.olimex.com/Products/ARM/ST/STM32-E407/resources/STM32-E407.pdf) | -           | [@dominikn](https://github.com/dominikn)       |         | `colcon.meta`            |
-| [Wio Terminal](https://wiki.seeedstudio.com/Wio-Terminal-Getting-Started/) | -           | [@maehara-keisuke](https://github.com/maehara-keisuke)       |         | `colcon.meta`            |
-
-You can find the available precompiled ROS 2 types for messages and services in [available_ros2_types](available_ros2_types).
-
-## How to use the precompiled library
-
-### Arduino IDE
-
-Go to [link to release section](https://github.com/micro-ROS/micro_ros_arduino/releases) and download the last release of micro-ROS library for Arduino.
-
-Include it in your project using `Sketch -> Include library -> Add .ZIP Library...`
-
-You can test micro-ROS examples located in this repo examples folder.
-
-Remember that is possible to use a micro-ROS Agent just with this docker command:
-
-```bash
-# Serial micro-ROS Agent
-docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:rolling serial --dev [YOUR BOARD PORT] -v6
+## Install library using git
+Alternatively, you can `git clone` this library as follows. This method may be useful if you need to edit library files or check out different versions of the library.
+- confirm the location of your Arduino sketches by opening File -> Preferences in
+your Windows Arduino IDE and noting the path "Sketchbook location" path, for example `C:\Users\YOUR-USER-NAME\Documents\Arduino`
+- append `\libraries` to the sketchbook location path to get the path to your Arduino libraries,
+e.g. `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`
+- make sure you have installed [Git for Windows](https://gitforwindows.org/) or a similar Windows Git tool
+- run commands below in a Windows shell to clone this library to your Windows PC
 ```
-### PlatformIO
-
-PlatformIO support for this repository has been deprecated in favor of its own build system: [micro_ros_platformio](https://github.com/micro-ROS/micro_ros_platformio)
-
-## How to build the precompiled library
-
-If you need to add custom packages or types, or customize any internal parameter of the micro-ROS stack, you will need to recompile this library from source code:
-
-```bash
-docker pull microros/micro_ros_static_library_builder:rolling
-docker run -it --rm -v $(pwd):/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:rolling
+cmd.exe
+cd %HOMEPATH%\Documents\Arduino\libraries
+git clone -b rolling --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 ```
 
-Optionally a specific single target can be built using the `-p <LIBRARY_TARGET>` argument like this:
+Now you can include this library into your sketch using `#include <micro_ros_arduino_kaia.h>`.
 
-```bash
-docker run -it --rm -v $(pwd):/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:rolling -p <LIBRARY_TARGET>
+## API tweaks
+Now you can handle connecting to WiFi as you see fit, instead of Micro-ROS doing this for you. For example:
+```
+  WiFi.begin(ssid, passw);
+  Serial.print("Connecting to WiFi ");
+
+  unsigned long startMillis = millis();
+  while (WiFi.status() != WL_CONNECTED) {
+    if (millis() - startMillis >= 10000) {
+      Serial.println(" timed out");
+      return;
+    }
+    Serial.print('.'); // Don't use F('.'), it crashes ESP32
+    delay(500);
+  }
+
+  Serial.println(F(" connected"));
+  Serial.print(F("IP "));
+  Serial.println(WiFi.localIP());
+
+  set_microros_wifi_transports("192.168.1.57", 8888); // Micro-ROS setup
 ```
 
-Available targets `LIBRARY_TARGETS` are available on the [top of the extras/library_generation/library_generation.sh file](https://github.com/micro-ROS/micro_ros_arduino/blob/main/extras/library_generation/library_generation.sh#L13-L24)
 
-Folders added to `extras/library_generation/extra_packages` and entries added to `extras/library_generation/extra_packages/extra_packages.repos` will be taken into account by this build system.
-This should be used for example when adding custom messages types or custom micro-ROS packages.
+## Kaia.ai Arduino ESP32 firmware
+Download the Kaia.ai firmware project code from the [Kaia.ai Arduino firmware repo](https://github.com/kaiaai/kaia_arduino_fw),
+open the downloaded kaia_esp32.ino project file in your Arduino IDE and click the build button.
+The project should build successfully. At this point, feel free to burn your ESP32 module with the compiled code and/or modify the firmware to your liking.
 
-You can [configure many parameters](https://micro.ros.org/docs/tutorials/advanced/microxrcedds_rmw_configuration/) of the library by editing the respective `.meta` file in the `extras/library_generation/` directory.
-
-## Patch Arduino board for support precompiled libraries
-### Patch Teensyduino
-
-Go inside your Arduino + Teensyduino installation and replace `platform.txt`:
-
-```bash
-export TEENSYDUINO_VERSION=[Your Teensyduino library version, e.g: 1.58.0]
-export ARDUINO_PATH=[Your Arduino + Teensyduino path]
-cd $ARDUINO_PATH/hardware/avr/$TEENSYDUINO_VERSION/
-curl https://raw.githubusercontent.com/micro-ROS/micro_ros_arduino/main/extras/patching_boards/platform_teensy.txt > platform.txt
+## Extend, modify and rebuild [Micro-ROS Arduino library for Kaia.ai](https://kaia.ai/)
+In some cases, tayloring [Kaia.ai](https://kaia.ai/) software to your particular robot may require tweaking the Kaia.ai library code in addition to the Kaia.ai firmware - for example to add new types of Micro-ROS messages. Follow these steps to [extend and/or adapt](https://micro.ros.org/docs/tutorials/advanced/create_new_type/) and rebuild the Kaia.ai Arduino library on Windows for your particular robot design.
+- Install Docker for your PC platform, e.g. [Docker for Windows](https://docs.docker.com/desktop/install/windows-install/) and make sure the Docker agent is running
+- Install the [Micro-ROS Arduino library for Kaia.ai](https://github.com/kaiaai/micro_ros_arduino_kaia/) using the instructions above. Let's assume you are using Arduino IDE for Windows and your Arduino libraries are stored under `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`.
+- Open a Windows command shell and run these commands to rebuild the library using the [Micro-ROS library builder](https://github.com/micro-ROS/micro_ros_arduino):
 ```
-
-The patch applies the changes detailed on the first two sections of this post: [Solution for adding support for pre-compiled Libraries](https://forum.pjrc.com/threads/63256-Solution-for-adding-support-for-pre-compiled-Libraries)
-
-### Patch SAM
-
-Go inside your Arduino installation and replace `platform.txt`:
-
-```bash
-export ARDUINO_PATH=[Your Arduino path]
-cd $ARDUINO_PATH/hardware/sam/1.6.12/
-curl https://raw.githubusercontent.com/micro-ROS/micro_ros_arduino/main/extras/patching_boards/platform_arduinocore_sam.txt > platform.txt
+cmd.exe
+cd %HOMEPATH%\Documents\Arduino\libraries
+git clone -b rolling --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
+docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:rolling -p esp32
 ```
-
-## Purpose of the Project
-
-This software is not ready for production use. It has neither been developed nor
-tested for a specific use case. However, the license conditions of the
-applicable Open Source licenses allow you to adapt the software to your needs.
-Before using it in a safety relevant setting, make sure that the software
-fulfills your requirements and adjust it according to any applicable safety
-standards, e.g., ISO 26262.
-
-## License
-
-This repository is open-sourced under the Apache-2.0 license. See the [LICENSE](LICENSE) file for details.
-
-For a list of other open-source components included in this repository,
-see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
-
-## Known Issues/Limitations
-
-- When using provided precompiled libraries, users should take into account the already configured static memory pools in middleware layers. [More info here](https://micro.ros.org/docs/tutorials/advanced/microxrcedds_rmw_configuration/).
-- micro-ROS transports should be refactored in order to provide a pluggable mechanisms. Only USB serial transports are provided.
-- Teensyduino support files have to be patched in order to use precompiled libraries.
-- To solve Python errors on ESP32 compilation: `apt install python-is-python3 && pip3 install pyserial`
