@@ -8,6 +8,7 @@ adapted to [Kaia.ai](https://kaia.ai/)-based robots. Specifically, this adapted 
 - moves WiFi.begin() outside of the Micro-ROS library for cleaner and convenient code development
 - tweaks colcon.meta to optimize library features, performance and memory usage
 - sets up the library for inclusion into the Arduino Library Manager
+- pre-built for ESP32 only
 
 ## Install a library release by .ZIP download
 - Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases)
