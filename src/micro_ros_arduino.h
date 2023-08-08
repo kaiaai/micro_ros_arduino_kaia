@@ -119,13 +119,7 @@ struct micro_ros_agent_locator {
 };
 #endif
 
-static inline void set_microros_wifi_transports(char * ssid, char * pass, char * agent_ip, uint agent_port){
-
-	WiFi.begin(ssid, pass);
-
-    while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-    }
+static inline void set_microros_wifi_transports(char * agent_ip, uint agent_port){
 
 	static struct micro_ros_agent_locator locator;
 	locator.address.fromString(agent_ip);
