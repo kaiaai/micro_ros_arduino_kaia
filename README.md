@@ -27,7 +27,7 @@ e.g. `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`
 ```
 cmd.exe
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b humble --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia
+git clone -b humble --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 ```
 
 Now you can include this library into your sketch using `#include <micro_ros_arduino_kaia.h>`.
@@ -56,7 +56,7 @@ Now you can handle connecting to WiFi as you see fit, instead of Micro-ROS doing
 ```
 
 
-## [Kaia.ai](https://kaia.ai/) Arduino ESP32 firmware
+## Kaia.ai Arduino ESP32 firmware
 Download the Kaia.ai firmware project code from the [Kaia.ai Arduino firmware repo](https://github.com/kaiaai/kaia_arduino_fw),
 open the downloaded kaia_esp32.ino project file in your Arduino IDE and click the build button.
 The project should build successfully. At this point, feel free to burn your ESP32 module with the compiled code and/or modify the firmware to your liking.
@@ -69,6 +69,6 @@ In some cases, tayloring [Kaia.ai](https://kaia.ai/) software to your particular
 ```
 cmd.exe
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b humble --depth 1 --recurse-submodules https://github.com/kaiaai/kaia_arduino_lib
-docker run -it --rm -v .\kaia_arduino_lib:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron -p esp32
+git clone -b humble --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
+docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron -p esp32
 ```
