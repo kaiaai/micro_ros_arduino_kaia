@@ -1,6 +1,10 @@
 # Micro-ROS Arduino library for [Kaia.ai](https://kaia.ai)
 
-This is an Arduino ESP32 Micro-ROS library for [Kaia.ai](https://kaia.ai) home pet robots platform.
+[Kaia.ai](https://kaiaai) is a platform for 3D-printable pet robots - work-in-progress.
+
+Please sign up for an early launch invite [here](https://remake.ai).
+
+This repo is an Arduino ESP32 Micro-ROS library for [Kaia.ai](https://kaia.ai) home pet robots platform.
 
 ## Install a library release using Arduino Library Manager
 - open your Arduino IDE
