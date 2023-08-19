@@ -11,10 +11,10 @@ This is an Arduino ESP32 Micro-ROS library for [Kaia.ai](https://kaia.ai) home p
 Keep in mind that this library is pre-built for ESP32 platform only. If you would like to use it with another platform, see instructions below on how to modify and rebuild the library. In particular, try omitting `-p esp32` in the `docker run` command.
 
 ## Install a library release by .zip download
-- Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases)
-and download the latest `micro_ros_arduino_kaia_prebuilt.zip` release
+- Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases), expand Assets
+and download the latest `Source code (zip)` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
-select the downloaded `micro_ros_arduino_kaia_prebuilt.zip` file
+select the downloaded file named `micro_ros_arduino_kaia-2.0.7-iron.zip` (the actual version digits may differ)
 - In your Arduino IDE, configure Tools -> Board as "ESP32 Dev Module" and leave the board settings at their defaults
 
 ## Install library using git
@@ -26,11 +26,10 @@ e.g. `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`
 - make sure you have installed [Git for Windows](https://gitforwindows.org/) or a similar Windows Git tool
 - run commands below in a Windows shell to clone this library to your Windows PC
 ```
-cmd.exe
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b iron --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
+git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 ```
-Now you can include this library into your sketch using `#include <micro_ros_arduino_kaia.h>`.
+Now you can include this library into your sketch using `#include <micro_ros_kaia.h>`.
 
 ## Kaia.ai Arduino ESP32 firmware
 Download the Kaia.ai firmware project code from the [Kaia.ai Arduino firmware repo](https://github.com/kaiaai/arduino_fw),
@@ -43,9 +42,8 @@ In some cases, tayloring [Kaia.ai](https://kaia.ai) software to your particular 
 - Install the [Micro-ROS Arduino library for Kaia.ai](https://github.com/kaiaai/micro_ros_arduino_kaia/) using the instructions above. Let's assume you are using Arduino IDE for Windows and your Arduino libraries are stored under `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`.
 - Open a Windows command shell and run these commands to rebuild the library using the [Micro-ROS library builder](https://github.com/micro-ROS/micro_ros_arduino):
 ```
-cmd.exe
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b iron --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
+git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron -p esp32
 ```
 
