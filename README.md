@@ -39,7 +39,7 @@ cd %HOMEPATH%\Documents\Arduino\libraries
 git clone -b humble --depth 1 --recurse-submodules https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 ```
 
-Now you can include this library into your sketch using `#include <micro_ros_arduino_kaia.h>`.
+Now you can include this library into your sketch using `#include <micro_ros_kaia.h>`.
 
 ## API tweaks
 Now you can handle connecting to WiFi as you see fit, instead of Micro-ROS doing this for you. For example:
