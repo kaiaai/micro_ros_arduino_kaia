@@ -41,7 +41,7 @@ ros2 run micro_ros_setup create_firmware_ws.sh generate_lib
 pushd firmware/mcu_ws > /dev/null
 
     # Workaround: Copy just tf2_msgs
-    git clone -b rolling https://github.com/ros2/geometry2
+    git clone -b iron https://github.com/ros2/geometry2
     cp -R geometry2/tf2_msgs ros2/tf2_msgs
     rm -rf geometry2
 
@@ -235,9 +235,8 @@ pushd firmware/mcu_ws > /dev/null
     INCLUDE_ROS2_PACKAGES=$(colcon list | awk '{print $1}' | awk -v d=" " '{s=(NR==1?s:s d)$0}END{print s}')
 popd > /dev/null
 
-apt -y install rsync
 for var in ${INCLUDE_ROS2_PACKAGES}; do
-    rsync -r /project/src/${var}/${var}/* /project/src/${var}/ > /dev/null 2>&1
+    cp -R /project/src/${var}/${var}/* /project/src/${var}/ > /dev/null 2>&1
     rm -rf /project/src/${var}/${var}/ > /dev/null 2>&1
 done
 
@@ -254,4 +253,4 @@ for f in $(find $(pwd) -name .git -type d); do pushd $f > /dev/null; echo $(git 
 sort -o /project/built_packages /project/built_packages
 
 ######## Fix permissions ########
-sudo chmod -R 777 .
+# sudo chmod -R 777 .
