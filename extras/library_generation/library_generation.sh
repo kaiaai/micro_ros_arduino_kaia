@@ -55,7 +55,7 @@ pushd firmware/mcu_ws > /dev/null
 popd > /dev/null
 
 ######## Clean and source ########
-find /project/src/ ! -name micro_ros_arduino.h ! -name *.c ! -name *.cpp ! -name *.c.in -delete
+find /project/src/ ! -name micro_ros_arduino.h ! -name *.c ! -name *.cpp ! -name *.c.in ! -name micro_ros_kaia.h -delete
 
 ######## Build for OpenCR  ########
 if [[ " ${PLATFORMS[@]} " =~ " opencr1 " ]]; then
