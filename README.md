@@ -2,7 +2,7 @@
 
 [Kaia.ai](https://kaiaai) is a platform for 3D-printable pet robots. Please sign up for an early launch invite [here](https://remake.ai).
 
-This repo is an Arduino ESP32 Micro-ROS library for [Kaia.ai](https://kaia.ai) home pet robots platform.
+This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pet robots platform.
 
 ## Install a library release using Arduino Library Manager
 - open your Arduino IDE
@@ -15,7 +15,6 @@ This repo is an Arduino ESP32 Micro-ROS library for [Kaia.ai](https://kaia.ai) h
 and download the latest `Source code (zip)` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
 select the downloaded file named `micro_ros_arduino_kaia-2.0.7-iron.zip` (the actual version digits may differ)
-- In your Arduino IDE, configure Tools -> Board as "ESP32 Dev Module" and leave the board settings at their defaults
 
 ## Install library using git
 Alternatively, you can `git clone` this library as follows. This method may be useful if you need to edit library files or check out different versions of the library.
@@ -30,11 +29,6 @@ cd %HOMEPATH%\Documents\Arduino\libraries
 git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 ```
 Now you can include this library into your sketch using `#include <micro_ros_kaia.h>`.
-
-## Kaia.ai Arduino ESP32 firmware
-Download the Kaia.ai firmware project code from the [Kaia.ai Arduino firmware repo](https://github.com/kaiaai/arduino_fw),
-open the downloaded `kaia_esp32.ino` project file in your Arduino IDE and click the build button.
-The project should build successfully. At this point, feel free to burn your ESP32 module with the compiled code and/or modify the firmware to your liking.
 
 ## Mod and rebuild Micro-ROS Arduino library for Kaia.ai
 In some cases, tayloring [Kaia.ai](https://kaia.ai) software to your particular robot may require tweaking the Kaia.ai library code in addition to the Kaia.ai firmware - for example to add new types of Micro-ROS messages. Follow these steps to [extend and/or adapt](https://micro.ros.org/docs/tutorials/advanced/create_new_type/) and rebuild the Kaia.ai Arduino library on Windows for your particular robot design.
