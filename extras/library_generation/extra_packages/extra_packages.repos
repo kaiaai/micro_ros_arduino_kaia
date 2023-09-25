@@ -5,5 +5,5 @@ repositories:
     version: galactic-devel
   kaia_msgs:
     type: git
-    url: https://github.com/kaiaai/kaia_msgs
+    url: https://github.com/kaiaai/kaiaai_msgs
     version: iron
