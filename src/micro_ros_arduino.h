@@ -150,7 +150,7 @@ static inline void set_microros_wifi_transports(char * ssid, char * pass, char *
 	);
 }
 
-static inline void set_microros_wifi_transports(char * agent_ip, uint agent_port){
+static inline void set_microros_wifi_transports(const char * agent_ip, const uint agent_port){
 
 	static struct micro_ros_agent_locator locator;
 	locator.address.fromString(agent_ip);
