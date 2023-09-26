@@ -150,13 +150,13 @@ static inline void set_microros_wifi_transports(char * ssid, char * pass, char *
 	);
 }
 
-static inline void set_microros_wifi_transports(const char * agent_ip, const uint agent_port){
+static inline int set_microros_wifi_transports(const char * agent_ip, const uint agent_port) {
 
 	static struct micro_ros_agent_locator locator;
 	locator.address.fromString(agent_ip);
 	locator.port = agent_port;
 
-	rmw_uros_set_custom_transport(
+	return rmw_uros_set_custom_transport(
 		false,
 		(void *) &locator,
 		arduino_wifi_transport_open,
