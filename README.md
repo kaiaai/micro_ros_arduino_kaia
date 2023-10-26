@@ -26,9 +26,9 @@ e.g. `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`
 - run commands below in a Windows shell to clone this library to your Windows PC
 ```
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaiaai
+git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaia
 ```
-Now you can include this library into your sketch using `#include <micro_ros_kaiaai.h>`.
+Now you can include this library into your sketch using `#include <micro_ros_kaia.h>`.
 
 ## Mod and rebuild Micro-ROS Arduino library for Kaia.ai
 In some cases, tayloring Kaia.ai software for your particular robot may require tweaking the Kaia.ai library code in
@@ -40,14 +40,14 @@ Let's assume you are using Arduino IDE for Windows and your Arduino libraries ar
 - Open a Windows command shell and run these commands to rebuild the library using the [Micro-ROS library builder](https://github.com/micro-ROS/micro_ros_arduino):
 ```
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaiaai
-docker run -it --rm -v .\micro_ros_kaiaai:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron
+git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaia
+docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron
 ```
 
 ## Hints
 - You can also rebuild the library for a particular platform only, e.g. for ESP32:
 ```
-docker run -it --rm -v .\micro_ros_kaiaai:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron -p esp32
+docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron -p esp32
 ```
 
 ## Acknowledgements and modifications
