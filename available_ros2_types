@@ -96,7 +96,7 @@ geometry_msgs/Vector3.msg
 geometry_msgs/Vector3Stamped.msg
 geometry_msgs/Wrench.msg
 geometry_msgs/WrenchStamped.msg
-kaia_msgs/KaiaTelemetry.msg
+kaiaai_msgs/KaiaTelemetry.msg
 lifecycle_msgs/ChangeState.srv
 lifecycle_msgs/GetAvailableStates.srv
 lifecycle_msgs/GetAvailableTransitions.srv
