@@ -11,10 +11,10 @@ This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pe
 - click Install
 
 ## Install a library release by .zip download
-- Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases), expand Assets
+- Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaiaai/releases), expand Assets
 and download the latest `Source code (zip)` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
-select the downloaded file named `micro_ros_arduino_kaia-2.0.7-rolling.zip` (the actual version digits may differ)
+select the downloaded file named `micro_ros_arduino_kaiaai-2.0.7-rolling.zip` (the actual version digits may differ)
 
 ## Install library using git
 Alternatively, you can `git clone` this library as follows. This method may be useful if you need to edit library files or check out different versions of the library.
@@ -26,7 +26,7 @@ e.g. `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`
 - run commands below in a Windows shell to clone this library to your Windows PC
 ```
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b rolling --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
+git clone -b rolling --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaia
 ```
 Now you can include this library into your sketch using `#include <micro_ros_kaia.h>`.
 
@@ -37,7 +37,7 @@ In some cases, tayloring [Kaia.ai](https://kaia.ai) software to your particular 
 - Open a Windows command shell and run these commands to rebuild the library using the [Micro-ROS library builder](https://github.com/micro-ROS/micro_ros_arduino):
 ```
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b rolling --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
+git clone -b rolling --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaia
 docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:rolling
 ```
 
