@@ -3,7 +3,7 @@ repositories:
     type: git
     url: https://github.com/ros-controls/control_msgs
     version: galactic-devel
-  kaia_msgs:
+  kaiaai_msgs:
     type: git
     url: https://github.com/kaiaai/kaia_msgs
     version: rolling
