@@ -11,10 +11,10 @@ This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pe
 - click Install
 
 ## Install a library release by .zip download
-- Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaia/releases), expand Assets
+- Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaiaai/releases), expand Assets
 and download the latest `Source code (zip)` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
-select the downloaded file named `micro_ros_arduino_kaia-2.0.7-humble.zip` (the actual version digits may differ)
+select the downloaded file named `micro_ros_arduino_kaiaai-2.0.7-humble.zip` (the actual version digits may differ)
 
 ## Install library using git
 Alternatively, you can `git clone` this library as follows. This method may be useful if you need to edit library files or check out different versions of the library.
