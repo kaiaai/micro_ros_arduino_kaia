@@ -1,4 +1,3 @@
-
 #ifndef MICRO_ROS_ARDUINO
 #define MICRO_ROS_ARDUINO
 
