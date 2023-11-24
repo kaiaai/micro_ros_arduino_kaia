@@ -1,3 +1,0 @@
-[submodule "extras/library_generation/extra_packages/kaia_msgs"]
-	path = extras/library_generation/extra_packages/kaia_msgs
-	url = https://github.com/kaiaai/kaia_msgs/
