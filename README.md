@@ -14,7 +14,7 @@ This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pe
 - Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaiaai/releases), expand Assets
 and download the latest `Source code (zip)` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
-select the downloaded file named `micro_ros_arduino_kaiaai-2.0.7-iron.zip` (the actual version digits may differ)
+select the downloaded file named `micro_ros_arduino_kaiaai-2.0.7-iron.3.zip` (the actual version digits may differ)
 
 ## Install library using git
 Alternatively, you can `git clone` this library as follows. This method may be useful if you need to edit library files or check out different versions of the library.
@@ -31,16 +31,17 @@ git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai m
 Now you can include this library into your sketch using `#include <micro_ros_kaia.h>`.
 
 ## Mod and rebuild Micro-ROS Arduino library for Kaia.ai
-In some cases, tayloring Kaia.ai software for your particular robot may require tweaking the Kaia.ai library code in
+In some cases, tayloring Kaia.ai software to your particular robot may require tweaking the Kaia.ai library code in
 addition to the Kaia.ai firmware - for example to add new types of Micro-ROS messages. Follow these steps
-to [extend and/or adapt](https://micro.ros.org/docs/tutorials/advanced/create_new_type/) and rebuild the Kaia.ai Arduino library on Windows for your particular robot design.
+to [extend and/or adapt](https://micro.ros.org/docs/tutorials/advanced/create_new_type/) and rebuild the Kaia.ai
+Arduino library on Windows for your particular robot design.
 - Install Docker for your PC platform, e.g. [Docker for Windows](https://docs.docker.com/desktop/install/windows-install/) and make sure the Docker agent is running
-- Install the [Micro-ROS Arduino library for Kaia.ai](https://github.com/kaiaai/micro_ros_arduino_kaiaai/) using the instructions above.
+- Install the [Micro-ROS Arduino library for Kaia.ai](https://github.com/kaiaai/micro_ros_arduino_kaia/) using the instructions above.
 Let's assume you are using Arduino IDE for Windows and your Arduino libraries are stored under `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`.
 - Open a Windows command shell and run these commands to rebuild the library using the [Micro-ROS library builder](https://github.com/micro-ROS/micro_ros_arduino):
 ```
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaia
+git clone -b iron --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:iron
 ```
 
