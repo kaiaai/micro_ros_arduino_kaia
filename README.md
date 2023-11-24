@@ -1,6 +1,6 @@
-# Micro-ROS Arduino library for [Kaia.ai](https://kaia.ai)
+# Micro-ROS Arduino library for Kaia.ai
 
-[Kaia.ai](https://kaiaai) is a platform for 3D-printable pet robots. Please sign up for an early launch invite [here](https://remake.ai).
+[Kaia.ai](https://kaia.ai) is a platform for 3D-printable pet robots. Please sign up for an early launch invite [here](https://remake.ai).
 
 This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pet robots platform.
 
@@ -14,7 +14,7 @@ This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pe
 - Navigate to the [release section](https://github.com/kaiaai/micro_ros_arduino_kaiaai/releases), expand Assets
 and download the latest `Source code (zip)` release
 - Launch your Arduino IDE, open the Sketch -> Include library -> Add .ZIP Library... menu and
-select the downloaded file named `micro_ros_arduino_kaiaai-2.0.7-rolling.zip` (the actual version digits may differ)
+select the downloaded file named `micro_ros_arduino_kaiaai-2.0.7-rolling.3.zip` (the actual version digits may differ)
 
 ## Install library using git
 Alternatively, you can `git clone` this library as follows. This method may be useful if you need to edit library files or check out different versions of the library.
@@ -31,13 +31,17 @@ git clone -b rolling --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaa
 Now you can include this library into your sketch using `#include <micro_ros_kaia.h>`.
 
 ## Mod and rebuild Micro-ROS Arduino library for Kaia.ai
-In some cases, tayloring [Kaia.ai](https://kaia.ai) software to your particular robot may require tweaking the Kaia.ai library code in addition to the Kaia.ai firmware - for example to add new types of Micro-ROS messages. Follow these steps to [extend and/or adapt](https://micro.ros.org/docs/tutorials/advanced/create_new_type/) and rebuild the Kaia.ai Arduino library on Windows for your particular robot design.
+In some cases, tayloring Kaia.ai software to your particular robot may require tweaking the Kaia.ai library code in
+addition to the Kaia.ai firmware - for example to add new types of Micro-ROS messages. Follow these steps
+to [extend and/or adapt](https://micro.ros.org/docs/tutorials/advanced/create_new_type/) and rebuild the Kaia.ai
+Arduino library on Windows for your particular robot design.
 - Install Docker for your PC platform, e.g. [Docker for Windows](https://docs.docker.com/desktop/install/windows-install/) and make sure the Docker agent is running
-- Install the [Micro-ROS Arduino library for Kaia.ai](https://github.com/kaiaai/micro_ros_arduino_kaia/) using the instructions above. Let's assume you are using Arduino IDE for Windows and your Arduino libraries are stored under `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`.
+- Install the [Micro-ROS Arduino library for Kaia.ai](https://github.com/kaiaai/micro_ros_arduino_kaia/) using the instructions above.
+Let's assume you are using Arduino IDE for Windows and your Arduino libraries are stored under `C:\Users\YOUR-USER-NAME\Documents\Arduino\libraries`.
 - Open a Windows command shell and run these commands to rebuild the library using the [Micro-ROS library builder](https://github.com/micro-ROS/micro_ros_arduino):
 ```
 cd %HOMEPATH%\Documents\Arduino\libraries
-git clone -b rolling --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaiaai micro_ros_kaia
+git clone -b rolling --depth 1 https://github.com/kaiaai/micro_ros_arduino_kaia micro_ros_kaia
 docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=extras microros/micro_ros_static_library_builder:rolling
 ```
 
@@ -49,11 +53,11 @@ docker run -it --rm -v .\micro_ros_kaia:/project --env MICROROS_LIBRARY_FOLDER=e
 
 ## Acknowledgements and modifications
 This is a fork of [Micro-ROS Arduino library](https://github.com/micro-ROS/micro_ros_arduino)
-adapted to [Kaia.ai](https://kaia.ai/)-based robots. Specifically, this adapted fork
+adapted to Kaia.ai-based robots. Specifically, this adapted fork
 
 - fixes `library_generation.sh` script to build the library correctly on Windows
 - adds a `git clone` to download the library
-- adds [kaia_msgs](https://github.com/kaiaai/kaia_msgs/) ROS2 package
+- adds [kaiaai_msgs](https://github.com/kaiaai/kaiaai_msgs/) ROS2 package
 - moves `WiFi.begin()` outside of the Micro-ROS library for cleaner and convenient code development
 - tweaks colcon.meta to optimize library features, performance and memory usage for Kaia.ai applications
 - sets up the library for inclusion into the Arduino Library Manager
