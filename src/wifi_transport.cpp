@@ -56,7 +56,8 @@ extern "C"
       delay(1);
     }
 
-    size_t readed  = udp_client.read(buf, len);
+    //size_t readed  = udp_client.read(buf, len);
+    int readed  = udp_client.read(buf, len);
 
     return (readed < 0) ? 0 : readed;
   }
