@@ -43,7 +43,7 @@ typedef struct kaiaai_msgs__msg__KaiaaiTelemetry2
   float odom_vel_yaw;
   rosidl_runtime_c__float__Sequence joint_pos;
   rosidl_runtime_c__float__Sequence joint_vel;
-  int8_t wifi_rssi;
+  int8_t wifi_rssi_dbm;
   uint16_t battery_mv;
   rosidl_runtime_c__uint16__Sequence distance_mm;
   rosidl_runtime_c__boolean__Sequence bumper;
