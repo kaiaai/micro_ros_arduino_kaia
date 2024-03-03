@@ -96,6 +96,7 @@ geometry_msgs/Vector3.msg
 geometry_msgs/Vector3Stamped.msg
 geometry_msgs/Wrench.msg
 geometry_msgs/WrenchStamped.msg
+kaiaai_msgs/JointPosVel.msg
 kaiaai_msgs/KaiaaiTelemetry.msg
 kaiaai_msgs/KaiaaiTelemetry2.msg
 kaiaai_msgs/WifiState.msg
