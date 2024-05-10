@@ -4,6 +4,8 @@
 
 This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pet robots platform.
 
+Questions? Please visit the [Support Forum](https://github.com/makerspet/support/discussions/)!
+
 ## Install a library release using Arduino Library Manager
 - open your Arduino IDE
 - select the Tools -> Manage Libraries menu
