@@ -89,6 +89,10 @@ Now you can handle connecting to WiFi as you see fit, instead of Micro-ROS doing
 
 ## Change Log
 v2.0.7-iron.4
+- merged all commits from the forked-from repo
+  - adds esp32s3 build support
+
+v2.0.7-iron.4
 - added KaiaaiTelemetry2 message
 - compiler warning fix
 
