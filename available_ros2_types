@@ -97,7 +97,10 @@ geometry_msgs/Vector3Stamped.msg
 geometry_msgs/VelocityStamped.msg
 geometry_msgs/Wrench.msg
 geometry_msgs/WrenchStamped.msg
+kaiaai_msgs/JointPosVel.msg
 kaiaai_msgs/KaiaaiTelemetry.msg
+kaiaai_msgs/KaiaaiTelemetry2.msg
+kaiaai_msgs/WifiState.msg
 lifecycle_msgs/ChangeState.srv
 lifecycle_msgs/GetAvailableStates.srv
 lifecycle_msgs/GetAvailableTransitions.srv

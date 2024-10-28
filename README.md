@@ -4,6 +4,8 @@
 
 This repo is an Arduino Micro-ROS library for [Kaia.ai](https://kaia.ai) home pet robots platform.
 
+Questions? Please visit the [Support Forum](https://github.com/makerspet/support/discussions/)!
+
 ## Install a library release using Arduino Library Manager
 - open your Arduino IDE
 - select the Tools -> Manage Libraries menu
@@ -84,3 +86,19 @@ Now you can handle connecting to WiFi as you see fit, instead of Micro-ROS doing
 
   set_microros_wifi_transports("192.168.1.57", 8888); // Micro-ROS setup
 ```
+
+## Change Log
+v2.0.7-iron.4
+- added KaiaaiTelemetry2 message
+- compiler warning fix
+
+v2.0.7-iron.3
+- added version defines MICRO_ROS_KAIA_MAJOR, MICRO_ROS_KAIA_MINOR, MICRO_ROS_KAIA_PATCH, MICRO_ROS_KAIA_BUILD, MICRO_ROS_KAIA_DISTRO
+- added version check macro IS_MICRO_ROS_KAIA_MIN_VERSION(major,minor,patch,build)
+
+v2.0.7-iron.2
+- fixed missing kaiaai_msg package
+- increased the max number of services to 6 to support parameter server
+
+v2.0.7-iron.1
+- re-added support for CPU architectures other than ESP32
